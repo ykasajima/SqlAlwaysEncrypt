@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div>
+    <div>DbConnection1 = @Model.Configuration["DbConnection1"]</div>
+    <div>DbConnection2 = @Model.Configuration["DbConnection2"]</div>
+</div>
+
+<form method="post">
+    <button asp-page-handler="GetStudents">Get Students</button>
+    <button asp-page-handler="AddStudent">Add Student</button>
+    <button asp-page-handler="AddStudents">Add Students</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>LastName</td>
+            <td>FirstMidName</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.Students)
+        {
+            <tr>
+                <td>@student.ID</td>
+                <td>@student.LastName</td>
+                <td>@student.FirstMidName</td>
+            </tr>
+        }
+    </tbody>
+</table>
